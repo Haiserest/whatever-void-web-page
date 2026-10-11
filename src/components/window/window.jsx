@@ -1,6 +1,5 @@
 import "./window.css";
 
-import { useState } from "react";
 import { Modal } from "antd";
 
 const Window = ({
@@ -9,8 +8,6 @@ const Window = ({
   onClose = () => {},
   children,
 }) => {
-  const [collapsed, setCollapsed] = useState(false);
-
   return (
     <Modal
       open={visible}
