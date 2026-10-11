@@ -1,8 +1,4 @@
-import {
-  ExperimentOutlined,
-  FilePdfOutlined,
-  GlobalOutlined,
-} from "@ant-design/icons";
+import { ExperimentOutlined, GlobalOutlined } from "@ant-design/icons";
 
 /**
  * Menu config สำหรับหน้า Home
@@ -12,24 +8,19 @@ import {
  */
 export const FEATURES = [
   {
-    TITLE: "Sandbox",
-    DESCRIPTION: "Playground for experiments and component tests",
-    PATH: "/sandbox",
-    ICON: ExperimentOutlined,
-    SHOW: true,
+    key: "sandbox",
+    title: "Sandbox",
+    description: "Playground for experiments and component tests",
+    path: "/sandbox",
+    icon: ExperimentOutlined,
+    show: true,
   },
   {
-    TITLE: "Document PDF",
-    DESCRIPTION: "PDF viewer — supports password-protected files",
-    PATH: "/sandbox/document-pdf",
-    ICON: FilePdfOutlined,
-    SHOW: true,
-  },
-  {
-    TITLE: "Travel",
-    DESCRIPTION: "Travel plans powered by Google Sheet",
-    PATH: "/travel",
-    ICON: GlobalOutlined,
-    SHOW: true,
+    key: "travel",
+    title: "Travel",
+    description: "Travel plans powered by Google Sheet",
+    path: "/travel",
+    icon: GlobalOutlined,
+    show: true,
   },
 ];
