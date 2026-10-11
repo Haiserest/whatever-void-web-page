@@ -1,0 +1,4 @@
+*:not(svg),
+body {
+  scrollbar-width: thin;
+}
