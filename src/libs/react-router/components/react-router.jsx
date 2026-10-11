@@ -3,26 +3,44 @@ import { ROUTERS } from "../config/routers";
 
 const ReactRouter = () => {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/whatever-void-web-page">
       <Routes>
         {ROUTERS.map((router) => {
           // กรณีมี Sub-menu (Nested Routes)
           if (router?.MENU) {
             return (
-              <Route path={router.PATH}>
+              <Route key={router.PATH} path={router.PATH}>
                 {router.MENU.map((route) => {
                   const Component = route.COMPONENT;
                   if (route?.PATH) {
-                    return <Route path={route.PATH} element={<Component />} />;
+                    return (
+                      <Route
+                        key={route.PATH}
+                        path={route.PATH}
+                        element={<Component />}
+                      />
+                    );
                   }
 
-                  return <Route index element={<Component />} />;
+                  return (
+                    <Route
+                      index
+                      key={`${router.PATH}-main`}
+                      element={<Component />}
+                    />
+                  );
                 })}
               </Route>
             );
           }
           const Component = router.COMPONENT;
-          return <Route path={router.PATH} element={<Component />} />;
+          return (
+            <Route
+              key={router.PATH}
+              path={router.PATH}
+              element={<Component />}
+            />
+          );
         })}
       </Routes>
     </BrowserRouter>

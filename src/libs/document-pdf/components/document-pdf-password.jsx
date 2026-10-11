@@ -1,3 +1,5 @@
+import "./document-pdf-password.css";
+
 import { useState } from "react";
 import { Input, Modal } from "antd";
 

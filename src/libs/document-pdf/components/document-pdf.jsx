@@ -1,3 +1,5 @@
+import "./document-pdf.css";
+
 import { useEffect, useRef, useState } from "react";
 import { isEmpty } from "lodash";
 import { Document, Page, pdfjs } from "react-pdf";
@@ -21,22 +23,15 @@ const DocumentPDF = ({ base64 = "", currentPage = 1, onUpdate = () => {} }) => {
   const [metadata, setMetadata] = useState(null);
   const [canvas, setCanvas] = useState(null);
 
-  useEffect(() => {
-    setCanvas(null);
-    setMetadata(metadata);
-  }, [base64]);
+  const passwordError = isPasswordEmpty || passwordReason === 2;
+
+  useEffect(resetMeta, [base64]);
+
+  useEffect(onResponse, [metadata, canvas]);
 
   if (isEmpty(base64)) {
     return <div>Document not found</div>;
   }
-
-  const passwordError = isPasswordEmpty || passwordReason === 2;
-
-  useEffect(() => {
-    if (metadata && canvas) {
-      onUpdate({ metadata, canvas });
-    }
-  }, [metadata, canvas]);
 
   return (
     <div className="document-react-pdf-container">
@@ -62,6 +57,17 @@ const DocumentPDF = ({ base64 = "", currentPage = 1, onUpdate = () => {} }) => {
       </Document>
     </div>
   );
+
+  function onResponse() {
+    if (metadata && canvas) {
+      onUpdate({ metadata, canvas });
+    }
+  }
+
+  function resetMeta() {
+    setCanvas(null);
+    setMetadata(null);
+  }
 
   // document
 

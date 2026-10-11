@@ -1,19 +1,17 @@
-import LandingPage from "../../../pages/page";
+import HomePage from "../../../pages/home/page";
 
 import SandBoxPage from "../../../pages/sandbox/page";
 import DocumentPDFPage from "../../../pages/sandbox/document-pdf/page";
 
 import TravelPage from "../../../pages/travel/page";
 
-const URI = "/whatever-void-web-page";
-
 export const ROUTERS = [
   {
-    PATH: URI,
-    COMPONENT: LandingPage,
+    PATH: "/",
+    COMPONENT: HomePage,
   },
   {
-    PATH: `${URI}/sandbox`,
+    PATH: "sandbox",
     MENU: [
       {
         COMPONENT: SandBoxPage,
@@ -25,7 +23,7 @@ export const ROUTERS = [
     ],
   },
   {
-    PATH: `${URI}/travel`,
+    PATH: "travel",
     COMPONENT: TravelPage,
   },
 ];
