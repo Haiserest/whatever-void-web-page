@@ -25,7 +25,7 @@ export const useGoogleSheet = ({
       readRemoteFile(url, {
         complete: (results) => {
           setLoading(false);
-          onSuccess({ data: result.data });
+          onSuccess({ data: results.data });
         },
         error: (error) => {
           console.error("Error reading Google Sheet:", error);
