@@ -4,6 +4,7 @@ import SandBoxPage from "../../../pages/sandbox/page";
 import DocumentPDFPage from "../../../pages/sandbox/document-pdf/page";
 
 import TravelPage from "../../../pages/travel/page";
+import NotFoundPage from "../../../pages/not-found/page";
 
 export const ROUTERS = [
   {
@@ -25,5 +26,9 @@ export const ROUTERS = [
   {
     PATH: "travel",
     COMPONENT: TravelPage,
+  },
+  {
+    PATH: "*",
+    COMPONENT: NotFoundPage,
   },
 ];
