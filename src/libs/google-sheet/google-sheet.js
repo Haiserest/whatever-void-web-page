@@ -1,8 +1,10 @@
+import { isEmpty } from "lodash";
 import { useEffect } from "react";
 import { usePapaParse } from "react-papaparse";
 
 export const useGoogleSheet = ({
-  url,
+  isRead = false,
+  url = "",
   onLoad = () => {},
   onSuccess = () => {},
   onFailed = () => {},
@@ -10,17 +12,27 @@ export const useGoogleSheet = ({
   const { readRemoteFile } = usePapaParse();
 
   useEffect(() => {
-    if (!url) {
-      console.error("Invalid url:", url);
-      onFailed({ data: [] });
-      return;
+    if (isRead) {
+      if (isEmpty(url)) {
+        console.error("Invalid url:", url);
+        onFailed({ data: [] });
+      } else {
+        onReadUrl();
+      }
     }
+  }, [url, isRead]);
 
+  function onReadUrl() {
     onLoad(true);
     readRemoteFile(url, {
       complete: (results) => {
         onLoad(false);
-        onSuccess({ data: results.data });
+        if (results.errors.length > 0) {
+          console.error("Error reading Google Sheet:", results.errors);
+          onFailed({ data: [] });
+        } else {
+          onSuccess({ data: results.data });
+        }
       },
       error: (error) => {
         console.error("Error reading Google Sheet:", error);
@@ -28,5 +40,5 @@ export const useGoogleSheet = ({
         onFailed({ data: [] });
       },
     });
-  }, [url]);
+  }
 };
