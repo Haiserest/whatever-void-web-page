@@ -1,13 +1,11 @@
 import { useState } from "react";
-import { Typography } from "antd";
 
 import { FEATURES_SANDBOX } from "./config/feature";
 
 import GridLayout from "../../components/grid/grid-layout";
 import CardComponent from "../../components/card/card";
 import Window from "../../components/window/window";
-
-const { Title } = Typography;
+import TitleHeader from "../../components/header/title-header";
 
 const SandBoxPage = () => {
   const [openWindow, setOpenWindow] = useState(false);
@@ -19,7 +17,7 @@ const SandBoxPage = () => {
 
   return (
     <div className="sandbox-page">
-      <Title>Sandbox</Title>
+      <TitleHeader title="Sandbox" />
       <GridLayout
         items={features}
         render={(item) => <CardComponent data={item} onClick={onOpenFeature} />}

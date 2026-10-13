@@ -1,21 +1,18 @@
 import "./page.css";
 
-import { Typography } from "antd";
-
 import { FEATURES } from "./config/features";
 
 import CardComponent from "../../components/card/card";
 import GridLayout from "../../components/grid/grid-layout";
 import ReactRouterLink from "../../libs/react-router/components/react-router-link";
-
-const { Title } = Typography;
+import TitleHeader from "../../components/header/title-header";
 
 const HomePage = () => {
   const features = FEATURES.filter((feature) => feature.show);
 
   return (
     <div className="home-page">
-      <Title>Features</Title>
+      <TitleHeader title="Features" />
       <GridLayout
         items={features}
         render={(item) => (
