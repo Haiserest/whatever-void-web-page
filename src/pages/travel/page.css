@@ -4,6 +4,18 @@
   gap: 10px;
 }
 
+.travel-page-header {
+  display: flex;
+  flex-direction: row;
+}
+
+.travel-page-header-search {
+  display: flex;
+  justify-content: end;
+  align-items: end;
+  margin-bottom: 0.5em;
+}
+
 .travel-page-content {
   display: flex;
   flex-direction: column;
