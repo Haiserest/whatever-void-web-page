@@ -13,6 +13,7 @@ const HomePage = () => {
   return (
     <div className="home-page">
       <TitleHeader title="Features" />
+      <div>v0.0.1</div>
       <GridLayout
         items={features}
         render={(item) => (
