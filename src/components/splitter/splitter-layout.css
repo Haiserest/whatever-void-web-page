@@ -4,3 +4,19 @@
   margin: 10px;
   border: 1px solid #A5A5A5;
 }
+
+/* กัน browser แย่ง touch gesture (scroll/swipe) ขณะลาก resize */
+.splitter-layout-container .ant-splitter-bar-dragger {
+  touch-action: none;
+}
+
+/* ขยายพื้นที่จับ dragger (invisible hit area) บนหน้าจอสัมผัส — default ของ antd แค่ 6px */
+@media (pointer: coarse) {
+  .splitter-layout-container.ant-splitter-vertical .ant-splitter-bar-dragger {
+    height: 28px;
+  }
+
+  .splitter-layout-container.ant-splitter-horizontal .ant-splitter-bar-dragger {
+    width: 28px;
+  }
+}
