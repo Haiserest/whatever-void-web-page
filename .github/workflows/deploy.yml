@@ -32,7 +32,9 @@ jobs:
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
       # yarn deploy = predeploy (build + copy-404) → gh-pages -d dist
+      # ต้องส่ง --repo พร้อม token ใน URL เพราะ gh-pages clone repo ไป temp dir
+      # ของตัวเอง ไม่ได้ใช้ credential ที่ actions/checkout ตั้งไว้
       - name: Build & Deploy
-        run: yarn deploy
+        run: yarn deploy --repo "https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.git"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
