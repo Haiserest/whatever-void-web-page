@@ -1,6 +1,7 @@
 import "./page.css";
 
 import { useIsMobile } from "../../hooks/dom/use-mobile";
+import { useTravelData } from "../../hooks/travel/use-travel";
 
 import TitleHeader from "../../components/header/title-header";
 import SearchComponent from "../../components/search/search";
@@ -11,6 +12,7 @@ import ButtonDB from "./components/button-db";
 
 const TravelPage = () => {
   const isMobile = useIsMobile();
+  const { dataTable, onUpdateDataTable } = useTravelData();
 
   return (
     <div className="travel-page">
@@ -25,11 +27,11 @@ const TravelPage = () => {
           layout={isMobile ? "vertical" : "horizontal"}
           render={{
             left: <TableResult />,
-            right: <TableFilter />,
+            right: <TableFilter data={dataTable} />,
           }}
         />
       </div>
-      <ButtonDB />
+      <ButtonDB onUpdateDB={onUpdateDataTable} />
     </div>
   );
 };

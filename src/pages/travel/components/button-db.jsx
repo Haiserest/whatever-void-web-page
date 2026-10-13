@@ -3,15 +3,11 @@ import { FloatButton } from "antd";
 
 import ModalDB from "./modal-db";
 
-const ButtonDB = () => {
+const ButtonDB = ({ onUpdateDB = () => {} }) => {
   const [modalOpen, setModalOpen] = useState(false);
   return (
     <>
-      <ModalDB
-        visible={modalOpen}
-        onClose={onCloseDB}
-        onSuccess={(data) => console.log(data)}
-      />
+      <ModalDB visible={modalOpen} onClose={onCloseDB} onSuccess={onUpdateDB} />
       <FloatButton style={{ left: 20 }} onClick={onOpenDB} />
     </>
   );

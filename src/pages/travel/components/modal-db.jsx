@@ -36,8 +36,8 @@ const ModalDB = ({
   });
 
   return (
-    <Spin spinning={loading}>
-      <Window title="Sync DB" visible={visible} onClose={onCloseModal}>
+    <Window title="Sync DB" visible={visible} onClose={onCloseModal}>
+      <Spin spinning={loading}>
         <div className="modal-db-content">
           <TitleHeader title="Google sheet url" />
           <Input value={text} onChange={onTextChange} onPressEnter={onSync} />
@@ -51,8 +51,8 @@ const ModalDB = ({
             <Result status="warning" title="Data Sync Failed" />
           )}
         </div>
-      </Window>
-    </Spin>
+      </Spin>
+    </Window>
   );
 
   function onTextChange(event) {
