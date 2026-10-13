@@ -5,8 +5,8 @@ import { useIsMobile } from "../../hooks/dom/use-mobile";
 import TitleHeader from "../../components/header/title-header";
 import SearchComponent from "../../components/search/search";
 import SplitterLayout from "../../components/splitter/splitter-layout";
-import TableResult from "./table/table-result";
-import TableFilter from "./table/table-filter";
+import TableResult from "./components/table-result";
+import TableFilter from "./components/table-filter";
 import ButtonDB from "./components/button-db";
 
 const TravelPage = () => {
