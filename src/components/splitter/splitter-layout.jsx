@@ -10,8 +10,8 @@ const SplitterLayout = ({ layout = null, render = {} }) => {
 
   return (
     <Splitter className="splitter-layout-container" orientation={orientation}>
-      <Splitter.Panel min="30%">{left}</Splitter.Panel>
-      <Splitter.Panel min="30%">{right}</Splitter.Panel>
+      <Splitter.Panel min="40%">{left}</Splitter.Panel>
+      <Splitter.Panel min="40%">{right}</Splitter.Panel>
     </Splitter>
   );
 };

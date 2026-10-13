@@ -3,7 +3,7 @@ import TableComponent from "../../../components/table/table";
 import TagLayout from "../../../components/tag/tag-layout";
 import TagComponent from "../../../components/tag/tag";
 
-const TableFilter = () => {
+const TableFilter = ({ data = [] }) => {
   const COLUMNS = [
     {
       key: "name",
@@ -47,7 +47,7 @@ const TableFilter = () => {
   return (
     <div className="travel-page-content-splitter-part">
       <div className="travel-page-splitter-title">Table Filter</div>
-      <TableComponent columns={COLUMNS} />
+      <TableComponent columns={COLUMNS} data={data} />
     </div>
   );
 
