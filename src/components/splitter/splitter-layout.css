@@ -1,0 +1,6 @@
+.splitter-layout-container {
+  height: calc(100vh - 250px);
+  width: calc(100vw - 30px);
+  margin: 10px;
+  border: 1px solid #A5A5A5;
+}
