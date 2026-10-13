@@ -1,6 +1,7 @@
 import { Button } from "antd";
 import TableComponent from "../../../components/table/table";
 import TagLayout from "../../../components/tag/tag-layout";
+import TagComponent from "../../../components/tag/tag";
 
 const TableFilter = () => {
   const COLUMNS = [
@@ -17,7 +18,7 @@ const TableFilter = () => {
       render: (tags) => (
         <TagLayout>
           {tags.map((tag) => (
-            <TableComponent title={tag} />
+            <TagComponent title={tag} />
           ))}
         </TagLayout>
       ),
