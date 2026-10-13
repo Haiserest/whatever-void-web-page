@@ -1,0 +1,25 @@
+.travel-page {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.travel-page-content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.travel-page-content-splitter-part {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+  overflow: hidden;
+}
+
+.travel-page-splitter-title {
+  border: 1px solid #A5A5A5;
+  border-radius: 8px;
+  padding: 5px;
+}

@@ -1,0 +1,38 @@
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: # กดรันเองจากแท็บ Actions ได้ด้วย
+
+permissions:
+  contents: write # GITHUB_TOKEN ต้องมีสิทธิ์ push ไป gh-pages branch
+
+concurrency:
+  group: pages-deploy
+  cancel-in-progress: true # push ซ้ำระหว่าง deploy → ยกเลิกตัวเก่า
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: yarn
+
+      - run: yarn install --frozen-lockfile
+
+      # gh-pages ต้องการ git identity สำหรับ commit ขึ้น gh-pages branch
+      - name: Configure git
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      # yarn deploy = predeploy (build + copy-404) → gh-pages -d dist
+      - name: Build & Deploy
+        run: yarn deploy
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

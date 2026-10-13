@@ -1,22 +1,72 @@
-# React + Vite
+# whatever-void-web-page
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Personal playground web app — React 19 + Vite 8 (React Compiler enabled), deployed to GitHub Pages.
 
-Currently, two official plugins are available:
+**Live:** https://haiserest.github.io/whatever-void-web-page/
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Requirements
 
-## React Compiler
+- Node 24
+- yarn
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+## Commands
 
-Note: This will impact Vite dev & build performances.
+```bash
+yarn dev       # dev server → localhost:5173/whatever-void-web-page/
+yarn build     # production build → dist/ (+ auto-generates dist/404.html)
+yarn preview   # preview the production build locally
+yarn lint      # eslint
+yarn deploy    # build + publish dist/ to gh-pages branch
+```
 
-## Expanding the ESLint configuration
+## Deploy
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```bash
+yarn deploy
+```
 
----
+Chain (npm/yarn pre/post hooks — single command does everything):
 
-Node: 24
+```
+yarn deploy
+  └─ predeploy  → npm run build
+       ├─ build     → vite build        → dist/
+       └─ postbuild → scripts/copy-404.js → dist/404.html
+  └─ deploy     → gh-pages -d dist     → pushes to gh-pages branch
+```
+
+### GitHub Pages deep links (404.html)
+
+This app uses `BrowserRouter`, but GitHub Pages has no SPA fallback — a direct visit or refresh on a sub-path (e.g. `/whatever-void-web-page/travel`) would 404. Fix: `scripts/copy-404.js` copies the built `index.html` to `404.html`, so GitHub Pages serves the app at the requested URL and `BrowserRouter` renders the correct route. Runs automatically via `postbuild` — no extra step needed.
+
+Repo settings: **Settings → Pages** must serve from the `gh-pages` branch.
+
+## Routes
+
+| Path | Page |
+|---|---|
+| `/` | Home |
+| `/sandbox` | Sandbox |
+| `/sandbox/document-pdf` | PDF viewer demo (`react-pdf`, password-protected file support) |
+| `/travel` | Travel |
+
+Routes are defined in `src/libs/react-router/config/routers.jsx` and rendered by `src/libs/react-router/components/react-router.jsx` (`basename="/whatever-void-web-page"`).
+
+## Structure
+
+```
+src/
+  main.jsx
+  pages/                  # route pages
+  libs/
+    react-router/         # config-driven router (ROUTERS → <Route>)
+    document-pdf/         # PDF viewer: components / services / helpers
+    google-sheet/         # useGoogleSheet hook (papaparse → CSV)
+scripts/
+  copy-404.js             # dist/index.html → dist/404.html (GH Pages SPA fallback)
+```
+
+## Notes
+
+- React Compiler is enabled via `babel-plugin-react-compiler` in `vite.config.js` (slower dev/build, see [docs](https://react.dev/learn/react-compiler)).
+- pdf.js worker is pinned via CDN in `src/libs/document-pdf/components/document-pdf.jsx`.
