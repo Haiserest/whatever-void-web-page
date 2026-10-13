@@ -1,6 +1,6 @@
 import "./window.css";
-
 import { Modal } from "antd";
+import { CloseOutlined } from "@ant-design/icons";
 
 const Window = ({
   visible = false,
@@ -35,10 +35,9 @@ const HeaderWindow = ({ title = "", onCloseWindow = () => {} }) => {
         <button
           type="button"
           className="traffic-light close"
-          aria-label="Close"
           onClick={onCloseWindow}
         >
-          <span aria-hidden>×</span>
+          <CloseOutlined />
         </button>
       </div>
       <div className="app-window-title">{title}</div>
