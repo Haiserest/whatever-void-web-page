@@ -2,13 +2,13 @@ import { useState } from "react";
 
 import { FEATURES_SANDBOX } from "./config/feature";
 
-import GridLayout from "../../components/grid/grid-layout";
-import CardComponent from "../../components/card/card";
-import Window from "../../components/window/window";
 import TitleHeader from "../../components/header/title-header";
+import Card from "../../components/card/card";
+import { useWindowModalHook } from "../../components/window/window-hook";
+import WindowModal from "../../components/window/window";
 
 const SandBoxPage = () => {
-  const [openWindow, setOpenWindow] = useState(false);
+  const { visible, onOpen, onClose } = useWindowModalHook();
   const [currentData, setCurrentData] = useState(null);
 
   const features = FEATURES_SANDBOX.filter((feature) => feature.show);
@@ -18,27 +18,27 @@ const SandBoxPage = () => {
   return (
     <div className="sandbox-page">
       <TitleHeader title="Sandbox" />
-      <GridLayout
-        items={features}
-        render={(item) => <CardComponent data={item} onClick={onOpenFeature} />}
-      />
-      <Window
-        visible={openWindow}
+      {features.map((item) => (
+        <Card metadata={item} onClick={onOpenFeature} />
+      ))}
+      <WindowModal
         title={currentData?.title}
+        visible={visible}
         onClose={onCloseFeature}
       >
-        <Component />
-      </Window>
+        {Component}
+      </WindowModal>
     </div>
   );
 
   function onOpenFeature(data) {
     setCurrentData(data);
-    setOpenWindow(true);
+    onOpen();
   }
 
   function onCloseFeature() {
-    setOpenWindow(false);
+    onClose();
+    setCurrentData();
   }
 };
 

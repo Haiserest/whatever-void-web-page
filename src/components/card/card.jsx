@@ -1,24 +1,39 @@
 import "./card.css";
 
-import { Card } from "antd";
+import { Avatar, Card as CardLib, Text } from "@mantine/core";
+import { isNil } from "lodash";
 
-const CardComponent = ({ data = {}, onClick = () => {} }) => {
-  const Icon = data?.icon ?? null;
+const Card = ({ metadata = {}, onClick = () => {} }) => {
+  const title = metadata?.title ?? "";
+  const description = metadata?.description ?? "";
+  const iconAvaliable = !isNil(metadata?.icon);
+  const Icon = metadata?.icon;
+
   return (
-    <Card
-      hoverable
-      className="feature-card"
-      onClick={() => {
-        onClick(data);
-      }}
+    <CardLib
+      style={{ cursor: "pointer" }}
+      withBorder
+      orientation="horizontal"
+      onClick={() => onClick(metadata)}
     >
-      <Card.Meta
-        avatar={<Icon style={{ fontSize: 28 }} />}
-        title={data?.title ?? ""}
-        description={data?.description ?? ""}
-      />
-    </Card>
+      <CardLib.Section inheritPadding px="xs" withBorder>
+        {iconAvaliable ? (
+          <Avatar>
+            <Icon size={28} />
+          </Avatar>
+        ) : (
+          <Avatar name={title} />
+        )}
+      </CardLib.Section>
+
+      <CardLib.Section inheritPadding px="md">
+        <Text fz="xl">{title}</Text>
+        <Text fz="xs" c="dimmed">
+          {description}
+        </Text>
+      </CardLib.Section>
+    </CardLib>
   );
 };
 
-export default CardComponent;
+export default Card;

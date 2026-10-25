@@ -1,5 +1,4 @@
-import { FilePdfOutlined } from "@ant-design/icons";
-
+import { FileIcon } from "@phosphor-icons/react";
 import DocumentPDFPage from "../document-pdf/page";
 
 export const FEATURES_SANDBOX = [
@@ -9,7 +8,7 @@ export const FEATURES_SANDBOX = [
     description: "PDF viewer — supports password-protected files",
     component: DocumentPDFPage,
     path: "/sandbox/document-pdf",
-    icon: FilePdfOutlined,
+    icon: FileIcon,
     show: true,
   },
 ];

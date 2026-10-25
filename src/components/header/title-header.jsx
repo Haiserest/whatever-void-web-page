@@ -1,9 +1,5 @@
-import { Typography } from "antd";
-
-const { Title } = Typography;
-
 const TitleHeader = ({ title }) => {
-  return <Title level={4}>{title}</Title>;
+  return <div level={4}>{title}</div>;
 };
 
 export default TitleHeader;

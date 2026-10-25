@@ -35,13 +35,13 @@ const DocumentPDF = ({ base64 = "", currentPage = 1, onUpdate = () => {} }) => {
 
   return (
     <div className="document-react-pdf-container">
-      <DocumentPDFPassword
+      {/* <DocumentPDFPassword
         visible={passwordOpen}
         showErrorInline={passwordError}
         onUpdate={onPasswordUpdate}
         onSubmit={onPasswordSubmit}
         onClose={onPasswordClose}
-      />
+      /> */}
       <Document
         file={base64}
         onLoadSuccess={onLoadSuccess}
