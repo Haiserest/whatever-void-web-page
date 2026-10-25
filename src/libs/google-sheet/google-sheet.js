@@ -2,6 +2,8 @@ import { isEmpty } from "lodash";
 import { useEffect } from "react";
 import { usePapaParse } from "react-papaparse";
 
+// url https://docs.google.com/spreadsheets/d/{ID-google-sheet}/gviz/tq?tqx=out:csv
+
 export const useGoogleSheet = ({
   isRead = false,
   url = "",
