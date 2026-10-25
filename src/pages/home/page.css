@@ -3,3 +3,9 @@
   margin: 0 auto;
   padding: 24px;
 }
+
+.home-page-feature {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}

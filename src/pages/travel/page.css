@@ -1,37 +1,213 @@
 .travel-page {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 20px;
+  width: min(100%, 1120px);
+  margin: 0 auto;
+  padding: 8px 12px 32px;
 }
 
 .travel-page-header {
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 14px;
 }
 
-.travel-page-header-search {
-  display: flex;
-  justify-content: end;
-  align-items: end;
-  margin-bottom: 0.5em;
+.travel-page-search {
+  max-width: 620px;
 }
 
-.travel-page-content {
+.travel-page-search input {
+  height: 46px;
+  border-color: var(--mantine-color-dark-4);
+  background: var(--mantine-color-dark-7);
+}
+
+.travel-page-plan-button {
+  min-height: 46px;
+  padding-inline: 18px;
+  box-shadow: 0 6px 18px rgb(0 0 0 / 16%);
+}
+
+.travel-page-plan-count {
+  display: inline-grid;
+  min-width: 22px;
+  height: 22px;
+  margin-left: 8px;
+  padding-inline: 5px;
+  place-items: center;
+  border-radius: 999px;
+  background: rgb(255 255 255 / 18%);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.travel-page-source {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  padding: 18px 20px;
+  border: 1px solid var(--mantine-color-dark-4);
+  border-radius: var(--mantine-radius-md);
+  background:
+    radial-gradient(
+      circle at 100% 0,
+      rgb(51 154 240 / 10%),
+      transparent 42%
+    ),
+    var(--mantine-color-dark-6);
+}
+
+.travel-page-source-copy {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 4px;
 }
 
-.travel-page-content-splitter-part {
+.travel-page-source-controls {
+  flex: 1;
+  justify-content: flex-end;
+}
+
+.travel-page-sheet-url {
+  width: min(100%, 440px);
+}
+
+.travel-page-sheet-url input {
+  height: 40px;
+  border-color: var(--mantine-color-dark-4);
+}
+
+.travel-page-error {
+  margin-top: -12px;
+  padding-inline: 4px;
+}
+
+.travel-page-results {
+  overflow: hidden;
+  border: 1px solid var(--mantine-color-dark-4);
+  border-radius: var(--mantine-radius-md);
+  background: var(--mantine-color-dark-7);
+  box-shadow: 0 12px 30px rgb(0 0 0 / 12%);
+}
+
+.travel-page-results-header {
   display: flex;
-  flex-direction: column;
-  gap: 10px;
-  padding: 10px;
-  overflow-y: hidden;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 20px;
+  border-bottom: 1px solid var(--mantine-color-dark-4);
 }
 
-.travel-page-splitter-title {
-  border: 1px solid #A5A5A5;
-  border-radius: 8px;
-  padding: 5px;
+.travel-page-table {
+  overflow-x: auto;
+}
+
+.travel-page-table table {
+  min-width: 760px;
+}
+
+.travel-page-table thead {
+  background: var(--mantine-color-dark-6);
+}
+
+.travel-page-table th {
+  padding: 14px 16px;
+  color: var(--mantine-color-dimmed);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.travel-page-table td {
+  padding: 14px 16px;
+  vertical-align: middle;
+}
+
+.travel-page-table tbody tr {
+  transition: background-color 140ms ease;
+}
+
+.travel-page-empty {
+  display: flex;
+  min-height: 240px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: 32px 16px;
+  color: var(--mantine-color-blue-4);
+  text-align: center;
+}
+
+.travel-page-empty p {
+  color: var(--mantine-color-text);
+}
+
+.travel-plan-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  border: 1px solid var(--mantine-color-dark-4);
+  border-radius: var(--mantine-radius-sm);
+  background: var(--mantine-color-dark-6);
+  padding: 12px 14px;
+}
+
+.travel-plan-list {
+  padding-top: 4px;
+}
+
+.travel-plan-generate {
+  margin-top: 8px;
+}
+
+@media (max-width: 768px) {
+  .travel-page {
+    gap: 14px;
+    padding: 4px 4px 24px;
+  }
+
+  .travel-page-header {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 10px;
+  }
+
+  .travel-page-search {
+    max-width: none;
+  }
+
+  .travel-page-plan-button {
+    justify-self: stretch;
+  }
+
+  .travel-page-source {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 14px;
+    padding: 16px;
+  }
+
+  .travel-page-source-controls {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .travel-page-sheet-url {
+    width: 100%;
+  }
+
+  .travel-page-results-header {
+    padding: 16px;
+  }
+
+  .travel-page-table th,
+  .travel-page-table td {
+    padding: 12px;
+  }
 }

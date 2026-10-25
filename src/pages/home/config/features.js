@@ -1,4 +1,4 @@
-import { ExperimentOutlined, GlobalOutlined } from "@ant-design/icons";
+import { AirplaneIcon, CodesandboxLogoIcon } from "@phosphor-icons/react";
 
 /**
  * Menu config สำหรับหน้า Home
@@ -12,7 +12,7 @@ export const FEATURES = [
     title: "Sandbox",
     description: "Playground for experiments and component tests",
     path: "/sandbox",
-    icon: ExperimentOutlined,
+    icon: CodesandboxLogoIcon,
     show: true,
   },
   {
@@ -20,7 +20,7 @@ export const FEATURES = [
     title: "Travel",
     description: "Travel plans powered by Google Sheet",
     path: "/travel",
-    icon: GlobalOutlined,
+    icon: AirplaneIcon,
     show: true,
   },
 ];
